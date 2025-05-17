@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Insurance Claim AI Demo</title>
+    <style>
+      body {
+        background-color: #f7f7f7;
+        color: #222;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 600px;
+        margin: 40px auto;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        padding: 32px 32px 24px 32px;
+      }
+      h2 {
+        color: #1976d2;
+        margin-bottom: 24px;
+      }
+      label {
+        font-weight: bold;
+        margin-top: 12px;
+        display: block;
+      }
+      input[type="file"], textarea {
+        margin-top: 6px;
+        margin-bottom: 18px;
+        width: 100%;
+      }
+      textarea {
+        resize: vertical;
+        min-height: 60px;
+      }
+      button {
+        background: #1976d2;
+        color: #fff;
+        border: none;
+        padding: 10px 24px;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+      button:hover {
+        background: #125ea2;
+      }
+      .result {
+        background: #e3f2fd;
+        border-left: 4px solid #1976d2;
+        margin-top: 32px;
+        padding: 18px 20px;
+        border-radius: 6px;
+      }
+      .result h3 {
+        margin-top: 0;
+        color: #1976d2;
+      }
+      .result strong {
+        color: #125ea2;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Upload Damage Photo, Claim Description & Optional Document</h2>
+      <form method="post" enctype="multipart/form-data">
+        <label>Damage Photo:</label>
+        <input type="file" name="image" required>
+
+        <label>Description:</label>
+        <textarea name="description" rows="4" cols="50" placeholder="Describe what happened..."></textarea>
+
+        <label>Upload Claim Form (PDF/Image):</label>
+        <input type="file" name="form_doc">
+
+        <button type="submit">Submit Claim</button>
+      </form>
+
+      {% if assessment or suggested_repair_cost or extracted_estimation %}
+      <div class="result">
+        <h3>Assessment Result</h3>
+        {% if assessment %}
+          <p><strong>Assessment:</strong> {{ assessment }}</p>
+        {% endif %}
+        {% if suggested_repair_cost %}
+          <p><strong>Suggested Repair Cost (INR):</strong> {{ suggested_repair_cost }}</p>
+        {% endif %}
+        {% if extracted_estimation %}
+          <p><strong>Extracted Estimation from Form:</strong> {{ extracted_estimation }}</p>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
