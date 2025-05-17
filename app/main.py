@@ -8,8 +8,8 @@ app = Flask(__name__)
 
 # Updated for openai>=1.0.0 Azure OpenAI usage
 client = openai.AzureOpenAI(
-    api_key='2bVpbROWoDFEvnolIIZznXm9lzobbNmNpJAwjQvsYwUcHagwWXyCJQQJ99BEACHYHv6XJ3w3AAAAACOG11EW',
-    azure_endpoint='https://itkt-marsk5py-eastus2.openai.azure.com/',
+    api_key='YOUR KEY HERE',
+    azure_endpoint='YOUR ENDPOINT HERE',
     api_version='2024-12-01-preview'
 )
 deployment_id = 'gpt-4.1-mini'
